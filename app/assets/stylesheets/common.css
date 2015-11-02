@@ -1,7 +1,8 @@
 body {
-  font-family: "Roboto",Helvetica,sans-serif;
+  font-family: "Roboto Slab",Helvetica,sans-serif;
   color: #DB5A6B;
   background-color: #FFF9FC;
+  font-size: 19px;
 }
 
 .header {

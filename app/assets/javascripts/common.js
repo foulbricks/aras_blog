@@ -5,7 +5,12 @@ $(function(){
     infinite: true,
     speed: 500,
     fade: true,
-    cssEase: 'linear'
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplaySpeed: 5000,
+    adaptiveHeight: true,
+    cssEase: 'linear',
+    autoplay: true
   });
   
 });

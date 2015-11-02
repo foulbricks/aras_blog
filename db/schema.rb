@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151011035809) do
+ActiveRecord::Schema.define(version: 20151102032453) do
 
   create_table "blogs", force: true do |t|
     t.string   "name",                         null: false
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20151011035809) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "priority",     default: 0
   end
 
   create_table "briefings", force: true do |t|
@@ -56,11 +57,25 @@ ActiveRecord::Schema.define(version: 20151011035809) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "landing_page_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "landing_pages", force: true do |t|
-    t.string   "headline",                    null: false
+    t.string   "headline",                             null: false
     t.text     "description"
-    t.boolean  "active",      default: false
+    t.boolean  "active",               default: false
     t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "slug"
+    t.integer  "landing_page_type_id"
+  end
+
+  create_table "photos", force: true do |t|
+    t.string   "file",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -76,6 +91,8 @@ ActiveRecord::Schema.define(version: 20151011035809) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image"
+    t.boolean  "featured",         default: false
   end
 
   create_table "users", force: true do |t|
@@ -91,6 +108,8 @@ ActiveRecord::Schema.define(version: 20151011035809) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

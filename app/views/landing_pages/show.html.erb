@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <p><%= image_tag(@page.image, :alt => @page.headline, :class => "img-responsive", :style => "margin:auto;" )%>
+      <h2 class="text-center"><%= @page.headline %></h2>
+      <hr />
+      <div><%= @page.description.to_s.html_safe %></div>
+    </div>
+  </div>
+</div>

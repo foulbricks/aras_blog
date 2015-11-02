@@ -33,11 +33,12 @@ group :doc do
 end
 
 gem "devise"
-gem "rails_admin"
+gem "rails_admin", "~> 0.6.8"
 gem "carrierwave"
 gem "mini_magick", "~> 3.7.0"
 gem "fog"
 gem 'friendly_id', '~> 5.1.0'
+gem "wysiwyg-rails", "~> 1.2.7"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

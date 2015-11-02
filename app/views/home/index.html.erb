@@ -1,31 +1,50 @@
-<div class="homepage-slider">
-  <div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6">
-        <p><img src="http://kenwheeler.github.io/slick/img/fonz2.png">
+<style>
+.homepage-slider :focus {
+  outline: none;
+}
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="homepage-slider">
+        <% @posts.each do |post| %>
+          <div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-7">
+                <p><%= link_to image_tag(post.image, :alt => post.headline, :class => "img-responsive"), blog_post_path(post.blog, post) %></p>
+              </div>
+              <div class="col-xs-12 col-sm-5">
+                <div style="padding-right:10px;">
+                  <h2 style="margin-top: 5px;"><%= link_to post.headline, blog_post_path(post.blog, post) %></h2>
+                  <div class="introduction" style="font-size: 1.8rem;">
+                    <%= post.introduction.to_s.html_safe %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
-      <div class="col-xs-12 col-sm-6">
-        <p>your content</p>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6">
-        <p><img src="http://kenwheeler.github.io/slick/img/fonz2.png">
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        <p>your content</p>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6">
-        <p><img src="http://kenwheeler.github.io/slick/img/fonz2.png">
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        <p>your content</p>
+
+      <div style="margin-top:60px;margin-bottom:30px;">
+        <% if @briefings.any? %>
+          <% @briefings.each_slice(2) do |slice| %>
+            <div class="row">
+              <% slice.each do |briefing| %>
+                <div class="col-xs-12 col-sm-6">
+                  <% if briefing.image.present? %>
+                    <p><%#= image_tag(briefing.image, :alt => briefing.headline, :class => "img-responsive" )%></p>
+                  <% end %>
+                  <h3 class="text-center"><%= briefing.headline %></h3>
+                  <div class="description" style="padding-bottom:20px;">
+                    <%= briefing.description.to_s.html_safe %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

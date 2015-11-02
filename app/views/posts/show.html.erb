@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-2">
+      <h4 class="text-right"><%= @post.publication_date.strftime("%d/%m/%Y") %></h4>
+    </div>
+    <div class="col-xs-12 col-sm-10" style="border-left: 1px solid #DB5A6B;">
+      <p><%= image_tag(@post.image, :alt => @post.headline, :class => "img-responsive", :style => "margin:auto;" )%>
+      <h2 class="text-center"><%= @post.headline %></h2>
+      <hr />
+      <div><%= @post.introduction.to_s.html_safe %></div>
+      
+      <div><%= @post.description.to_s.html_safe %></div>
+    </div>
+  </div>
+</div>

@@ -17,8 +17,8 @@ RailsAdmin.config do |config|
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
   config.actions do
-    dashboard                     # mandatory
     index                         # mandatory
+    dashboard                     # mandatory
     new
     export
     bulk_delete
@@ -34,14 +34,34 @@ RailsAdmin.config do |config|
   
   config.model Blog do
     
+    list do
+      field :id
+      field :name
+      field :active
+      field :priority
+    end
+    
     edit do
       configure :user do
         visible false
       end
       
       field :name
-      field :introduction
+      # field :introduction, :wysihtml5 do
+      #   config_options toolbar: { fa: true, html: true },
+      #                  parserRules: { tags: { p:1 } }
+      # end
+      field :introduction, :froala do
+        config_options do
+          {
+            inlineMode: false,
+            paragraphy: false
+          }
+        end
+      end
+      field :priority
       field :image
+      field :active
       
       field :user_id, :hidden do
         visible true
@@ -49,6 +69,142 @@ RailsAdmin.config do |config|
           bindings[:view]._current_user.id
         end
       end
+    end
+  end
+  
+  config.model Briefing do
+    list do
+      field :id
+      field :headline
+      field :position
+      field :active
+    end
+    
+    edit do
+      field :headline
+      field :description, :froala do
+        config_options do
+          {
+            inlineMode: false,
+            paragraphy: false
+          }
+        end
+      end
+      field :position
+      field :image
+      field :active
+    end
+  end
+  
+  config.model Comment do
+    list do
+      field :id
+      field :name
+      field :email
+      field :comment
+    end
+    
+    edit do
+      field :name
+      field :email
+      field :comment, :froala do 
+        config_options do
+          {
+            inlineMode: false,
+            paragraphy: false
+          }
+        end
+      end
+    end
+  end
+  
+  config.model LandingPage do
+    list do
+      field :id
+      field :headline
+      field :landing_page_type
+      field :active
+    end
+    
+    edit do
+      field :headline
+      field :description, :froala do
+        config_options do
+          {
+            inlineMode: false,
+            paragraphy: false
+          }
+        end
+      end
+      field :landing_page_type
+      field :image
+      field :active
+    end
+  end
+  
+  config.model Photo do
+    list do
+      field :id
+      field :url
+    end
+  end
+  
+  config.model Post do
+    list do
+      field :id
+      field :blog
+      field :headline
+      field :publication_date
+      field :active
+    end
+    
+    edit do
+      field :blog
+      field :headline
+      field :introduction, :froala do
+        config_options do
+          {
+            inlineMode: false,
+            paragraphy: false
+          }
+        end
+      end
+      field :description, :froala do
+        config_options do
+          {
+            inlineMode: false,
+            paragraphy: false
+          }
+        end
+      end
+      field :publication_date
+      field :image
+      field :active
+      field :featured
+      field :user_id, :hidden do
+        visible true
+        default_value do
+          bindings[:view]._current_user.id
+        end
+      end
+    end
+  end
+  
+  config.model User do
+    list do
+      field :id
+      field :name
+      field :email
+      field :sign_in_count
+      field :current_sign_in_at
+    end
+    
+    edit do
+      field :first_name
+      field :last_name
+      field :email
+      field :password
+      field :password_confirmation
     end
   end
 end

@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="row" style="position:relative;">
+    <p><%= image_tag(@blog.image, :alt => @blog.name, :class => "img-responsive", :style => "margin:auto;") %></p>
+    <h2 style='font-size:6rem;color:white;font-family:"Dancing Script",Helvetica,sans-serif;position:absolute;bottom:150px;width:100%;' class="text-center"><%= @blog.name %></h2>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12" style="font-size:1.8rem;margin:20px;">
+      <div class="text-center">
+        <%= @blog.introduction.to_s.html_safe %>
+      </div>
+    </div>
+  </div>
+  
+  <%= @posts.each_slice(3) do |slice| %>
+    <div class="row">
+      <% slice.each do |post| %>
+        <div class="col-xs-12 col-sm-4">
+          <div style="position:relative;">
+            <p><%= image_tag(post.image, :alt => post.headline, :class => "img-responsive") %></p>
+            <div style="background-color:pink;position:relative;padding:10px 20px;width:80%;left:2%;bottom:20px;">
+              <h3><%= link_to post.headline, blog_post_path(@blog, post) %></h3>
+              <p><%= post.publication_date.strftime("%d/%m/%Y") %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
