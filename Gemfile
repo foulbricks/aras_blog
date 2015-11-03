@@ -40,6 +40,11 @@ gem "fog"
 gem 'friendly_id', '~> 5.1.0'
 gem "wysiwyg-rails", "~> 1.2.7"
 
+group :production do
+  gem "puma"
+  gem 'pg', '~> 0.18.1'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
